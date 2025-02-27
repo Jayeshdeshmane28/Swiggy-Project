@@ -7,7 +7,7 @@ import { FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="bg-gray-300  bottom-0">
+    <div className="bg-gray-300  bottom-0 mt-12">
       <div className="px-32 py-10 flex justify-evenly gap-10 items-start">
         <div>
           <div className="flex items-center ">
