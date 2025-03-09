@@ -18,6 +18,17 @@ const RestaurentCard = ({
       : cuisines.join(", ");
   };
 
+  const formatName=(name)=>{
+    // if(!name || name.length === 0 ) return "not available";
+    // return name.length > 3
+    // ? name.slice(0,3).join(", ")+ "..."
+    // :name.join(", ")
+
+    if (!name) return "";
+    const words = name.split(" ");
+    return words.length > 3 ? words.slice(0, 3).join(" ") + "..." : name;
+  }
+
   return (
     <div>
       <div className="w-[300px] md:max-w-[250px] h-[150px]">
@@ -28,7 +39,7 @@ const RestaurentCard = ({
         />
       </div>
       <div className="px-2 ">
-        <h2 className="font-semibold text-2xl">{name}</h2>
+        <h2 className="font-semibold text-2xl">{formatName(name)}</h2>
         <div className="flex gap-3">
           <h2 className="text-[16px] font-semibold">
             <FontAwesomeIcon className="text-yellow-400" icon={faStar} />
