@@ -1,26 +1,48 @@
-import React from 'react'
-import logo from '../assets/swiggy.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping, faHome, faMessage, faPhone } from '@fortawesome/free-solid-svg-icons'
-import { FaShoppingCart } from "react-icons/fa";
+import React from 'react';
+import logo from '../assets/swiggy.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping, faHome, faMessage, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router'; // Fixed incorrect import
+import useOnline from '../utils/useOnline';
 
 const Header = () => {
-  return (
-   <div className='flex justify-between px-8 py-4 shadow-lg items-center '>
-   <a className='cursor-pointer flex items-center ' href="">
-    <img src={logo} alt="img" className='w-14' />
-    <span className='text-2xl font-semibold text-orange-500'>Swiggy</span>
-   
-   </a>
-    <div className='flex justify-between gap-6 items '>
-        <a  href=""> <FontAwesomeIcon  icon={faHome}/>Home</a>
-        {/* <a  href=""> <FaShoppingCart />Home</a> */}
-        <a href=""> <FontAwesomeIcon icon={faMessage}/>About us</a>
-        <a href=""><FontAwesomeIcon icon={faPhone}/>Contact Us</a>
-        <a href=""><FontAwesomeIcon icon={faCartShopping}/>Cart</a>
-    </div>
-   </div>
-  )
-}
+  let OnlineStatus = useOnline();
 
-export default Header
+  return (
+    <header className="sticky top-0 left-0 w-full bg-white shadow-md z-50">
+      <div className="flex justify-between px-8 py-5   shadow-lg items-center ">
+        
+        {/* Logo Section */}
+        <Link className="cursor-pointer flex items-center space-x-3" to="/">
+          <img src={logo} alt="logo" className="w-12" />
+          <span className="text-2xl font-bold">Swiggy</span>
+          <p className="text-sm font-semibold ps-3 py-4">
+            {OnlineStatus ? "🟢 Online" : "🔴 Offline"}
+          </p>
+        </Link>
+
+        {/* Navigation Links */}
+        <nav className="flex space-x-6 text-lg font-medium">
+          <Link to="/" className="hover:text-gray-300 transition">
+            <FontAwesomeIcon icon={faHome} className="mr-2" />
+            Home
+          </Link>
+          <Link to="/about" className="hover:text-gray-300 transition">
+            <FontAwesomeIcon icon={faMessage} className="mr-2" />
+            About Us 
+          </Link>
+          <Link to="/contact" className="hover:text-gray-300 transition">
+            <FontAwesomeIcon icon={faPhone} className="mr-2" />
+            Contact Us
+          </Link>
+          <Link to="/cart" className="hover:text-gray-300 transition">
+            <FontAwesomeIcon icon={faCartShopping} className="mr-2" />
+            Cart
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+};
+
+export default Header;

@@ -9,7 +9,7 @@ const useRestaurant=()=>{
      useEffect(() => {
         const getRestaurantsData = async () => {
           const response = await fetch(API_URl);
-          console.log("response", response);
+          // console.log("response", response);
     
           try {
             if (response.ok) {
