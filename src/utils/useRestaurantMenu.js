@@ -8,7 +8,7 @@ const useRestaurantMenu = (id) => {
     const [menu, setMenu] = useState([])
     const [filterNormalData, setFilterNormalData] = useState([])
     const [filterNestedData, setFilterNestedData] = useState([])
-
+    const [offers, setOffers] = useState([]);
     useEffect(() =>{
         const getMenuData = async () => {   
             try {
@@ -23,7 +23,10 @@ const useRestaurantMenu = (id) => {
                 const resData = json?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards
                 
                 console.log("raw data",resData);
-    
+                // offer
+                setOffers(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers);
+                console.log("offers",json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers );
+
                 setFilterNormalData(resData.filter(resItem => resItem?.card?.card?.['@type'] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'))
                 setFilterNormalData (json?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((card)=>{
                     return  (card?.card?.card?.['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
@@ -47,7 +50,8 @@ const useRestaurantMenu = (id) => {
     const menuObject = {
         title: resInfo,
         normalMenu: filterNormalData,
-        nestedMenu:filterNestedData
+        nestedMenu:filterNestedData,
+        offers : offers
     }
     return menuObject;
 

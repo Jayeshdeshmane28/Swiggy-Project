@@ -82,6 +82,7 @@ const Footer = () => {
             <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200,h_65/icon-GooglePlay_1_zixjxl" alt="GooglePlay" />
           </a>
         </div>
+        
       </div>
     </div>
   );

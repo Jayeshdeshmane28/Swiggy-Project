@@ -1,9 +1,9 @@
 import React from 'react'
 
-const RestaurantBanner = ({title}) => {
+const RestaurantBanner = ({title,padding}) => {
   return (
     <>
-    <h1 className='text-2xl font-bold mb-6 py-4'>{title}</h1>
+    <h1 className={`text-2xl font-bold ${padding}`}>{title}</h1>
     </>
   )
 }
