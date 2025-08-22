@@ -100,7 +100,7 @@ const Cardcontainer = () => {
           ))
         )}
       </div>
-    </div>
+    </div>  
   );
 };
 

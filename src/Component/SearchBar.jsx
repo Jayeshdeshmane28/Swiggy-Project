@@ -1,33 +1,53 @@
-import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { IoIosSearch } from "react-icons/io";
 
-const SearchBar = ({masterCollection,updater,text,updateText}) => {
+const SearchBar = ({ resListForSearch, setResList, text, updateText }) => {
+  const [searchText, setSearchtext] = useState("");
 
-    const handleSearch=()=>{
-        const newdata=masterCollection.filter((restaurant) => restaurant?.info?.name.toLowerCase().includes(text.toLowerCase()))
-        console.log("newdata",newdata);
-        updater(newdata) 
-      }
+  let handleSearchText = (val) => {
+    updateText(val);
+  };
 
-      const handleSearchText = (val) => {
-        updateText(val);
-      };
-    
+  let handleSearch = () => {
+    if (text === "") {
+      console.log("Empty Search Text entered");
+      setResList(resListForSearch);
+    } else {
+      const searchRes = resListForSearch.filter((restaurant) =>
+        restaurant?.info?.name.toLowerCase().includes(text.trim().toLowerCase())
+      );
+
+      searchRes.length === null
+        ? setResList(null)
+        : setResList(searchRes);
+
+      console.log("searchRes: ", searchRes);
+    }
+  };
+
   return (
-    <div className="relative w-full max-w-xs">
-             <input
-               className="border-[1px] p-2 border-black rounded-md w-full "
-               type="text"
-               value={text}
-               onChange={(e) => handleSearchText(e.target.value)}
-               placeholder="Enter name of restaurant"
-             />
-          
-            {text.trim() && <button onClick={handleSearch}  className="text-xl absolute right-0 top-1/2 -translate-y-1/2 mr-1">  <FontAwesomeIcon icon={faMagnifyingGlass}/> </button>}
-        
-           </div>
-  )
-}
+    <div className=" mx-auto flex items-center">
+      <div className="relative w-full max-w-xs">
+        <input
+          type="text"
+          className="border-2 border-gray-300 rounded-3xl px-4 pr-10 w-full h-10 bg-gray-50 focus:outline focus:outline-gray-200"
+          value={text}
+          onChange={(e) => handleSearchText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSearch();
+            }
+          }}
+        />
+        <button
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-2xl"
+          onClick={handleSearch}
+        >
+          <IoIosSearch />
+        </button>
+      </div>
+    </div>
+  );
+};
 
-export default SearchBar
+export default SearchBar;

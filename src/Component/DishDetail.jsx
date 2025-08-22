@@ -5,35 +5,6 @@ import { DISH_URL } from '../Contants/Config';
 import { GiButtonFinger } from 'react-icons/gi';
 const DishDetail = ({imgUrl,isVeg,title,price,avgRating,description=""}) => {
 
-//   const [showFullDescription,setShowFullDescription]=useState(false)
-//   return (
-//     <div className='flex justify-between py-6 border-b border-gray-400'>
-//       <div className='w-10/12'>
-//         <div>
-//             {isVeg? "🟢" :"🔴"}
-//         </div>
-//         <h1>{title}</h1>
-//         <h1>₹ {price}</h1>
-//         <p><FontAwesomeIcon className="text-green-700" icon={faStar} />{avgRating}</p>
-//         <div>
-
-//         <span>{!showFullDescription ? description.split(" ").slice(0, 25).join(" ") : description}&nbsp;&nbsp;&nbsp; </span>
-    
-
-//         {description.length > 30 &&(
-//         <button onClick={()=>setShowFullDescription(!showFullDescription)}>
-//           {showFullDescription ? "...less" :  "...more"}
-//           </button>)}
-//         </div>
-//       </div>
-//         <div>
-//             <img className='w-36 h-36 object-cover rounded-2xl' src={DISH_URL+imgUrl} alt="image" /> 
-//         </div>
-//     </div>
-//   )
-
-
-//   parth code
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   return(
