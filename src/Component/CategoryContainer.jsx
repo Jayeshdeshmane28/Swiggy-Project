@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import DishDetail from './DishDetail'
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-const CategoryContainer = ({ categoryTitle, count, collection, marginTop }) => {
+const CategoryContainer = ({ categoryTitle, count, collection, marginTop, restaurantName }) => {
   const [isActive, setIsActive] = useState(false); // State to toggle accordion
 
   return (
@@ -27,6 +27,7 @@ const CategoryContainer = ({ categoryTitle, count, collection, marginTop }) => {
             {collection.map((fooditem) => (
               <DishDetail
                 key={fooditem?.card?.info?.id}
+                id={fooditem?.card?.info?.id}
                 imgUrl={fooditem?.card?.info?.imageId}
                 isVeg={fooditem?.card?.info?.isVeg}
                 title={fooditem?.card?.info?.name}
@@ -40,6 +41,7 @@ const CategoryContainer = ({ categoryTitle, count, collection, marginTop }) => {
                   "Be the first one to try"
                 }
                 description={fooditem?.card?.info?.description}
+                restaurantName={restaurantName}
               />
             ))}
           </div>

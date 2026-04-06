@@ -53,6 +53,7 @@ const Menu = () => {
               count={category?.card?.card?.itemCards.length}
               collection={category?.card?.card?.itemCards}
               marginTop={"mt-5"}
+              restaurantName={title?.name}
             />
             <div className="h-3 bg-gray-100"></div>
           </>
@@ -68,6 +69,7 @@ const Menu = () => {
               categoryTitle={subCategory.title}
               count={subCategory?.itemCards.length}
               collection={subCategory?.itemCards}
+              restaurantName={title?.name}
             />
           ))}
           <div className="h-3 bg-gray-100"></div>

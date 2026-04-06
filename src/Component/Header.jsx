@@ -2,11 +2,13 @@ import React from 'react';
 import logo from '../assets/swiggy.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHome, faMessage, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router'; // Fixed incorrect import
+import { Link } from 'react-router';
 import useOnline from '../utils/useOnline';
+import { useCart } from '../utils/CartContext';
 
 const Header = () => {
   let OnlineStatus = useOnline();
+  const { totalCount } = useCart();
 
   return (
     <header className="sticky top-0 left-0 w-full bg-white shadow-md z-50">
@@ -35,9 +37,14 @@ const Header = () => {
             <FontAwesomeIcon icon={faPhone} className="mr-2" />
             Contact Us
           </Link>
-          <Link to="/cart" className="hover:text-gray-300 transition">
+          <Link to="/cart" className="hover:text-gray-300 transition relative">
             <FontAwesomeIcon icon={faCartShopping} className="mr-2" />
             Cart
+            {totalCount > 0 && (
+              <span className="absolute -top-2 -right-3 bg-orange-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                {totalCount}
+              </span>
+            )}
           </Link>
         </nav>
       </div>
