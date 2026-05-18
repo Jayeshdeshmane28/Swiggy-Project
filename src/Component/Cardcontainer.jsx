@@ -85,8 +85,8 @@ const Cardcontainer = () => {
 
       {/* Restaurant Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {RestaurantList.length === 0 ? (
-          masterList.length === 0 ? (
+        {(RestaurantList?.length ?? 0) === 0 ? (
+          (masterList?.length ?? 0) === 0 ? (
             new Array(8).fill(0).map((_, i) => <ShimmerCard key={i} />)
           ) : (
             <h1 className="text-center text-xl text-gray-500">

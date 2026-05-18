@@ -14,21 +14,14 @@ const useRestaurant=()=>{
           try {
             if (response.ok) {
               const data = await response.json();
-              // console.log("carasoul data",data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info );
-              console.log(
-                "Restaurnat data",
-                data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-                  ?.restaurants
+              const cards = data?.data?.cards;
+              const restaurantCard = cards?.find(
+                (c) => c?.card?.card?.gridElements?.infoWithStyle?.restaurants?.length > 0
               );
-              setRestaurantList(
-                data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-                  ?.restaurants
-              );
-    
-              setMasterList(
-                data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-                ?.restaurants
-              )
+              const restaurants = restaurantCard?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+              console.log("Restaurnat data", restaurants);
+              setRestaurantList(restaurants);
+              setMasterList(restaurants);
             } else {
               // console.log(response.status);
               if (response.status === 400) {
