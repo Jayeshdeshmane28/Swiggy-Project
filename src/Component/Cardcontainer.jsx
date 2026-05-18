@@ -9,7 +9,7 @@ const Cardcontainer = () => {
   const restaurantData = useRestaurant();
   const { errorMessage, RestaurantList, masterList, updateRestaurants } =
     restaurantData;
-
+  console.log("RestaurantList", RestaurantList);
   // Filter Handlers
   const handleRating = () => {
     const filtered = RestaurantList.filter((r) => r.info.avgRating >= 4.5);
